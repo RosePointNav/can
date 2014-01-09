@@ -26,8 +26,6 @@
 
 -behaviour(application).
 
--include_lib("lager/include/log.hrl").
-
 %% Application callbacks
 -export([start/2,
 	 start/0,
@@ -62,7 +60,7 @@ start(_StartType, _StartArgs) ->
 
 %% @private
 start() ->
-    application:start(uart),
+%%    application:start(uart),
     application:start(can).
 
 %%--------------------------------------------------------------------
@@ -79,5 +77,5 @@ stop(_State) ->
 
 %% @private
 stop() ->
-    application:stop(can),
-    application:stop(uart).
+    application:stop(can).
+%%    application:stop(uart).

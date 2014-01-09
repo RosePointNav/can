@@ -26,6 +26,8 @@
 
 -behaviour(gen_server).
 
+-define(debug(X,Y), {X,Y}).  %% REVIEW replaces lager's debug macro
+
 %% API
 -export([start/0, start/1, stop/0]).
 -export([start_link/0, start_link/1]).
@@ -51,7 +53,6 @@
 
 -import(lists, [foreach/2, map/2, foldl/3]).
 
--include_lib("lager/include/log.hrl").
 -include("../include/can.hrl").
 
 -define(SERVER, can_router).
@@ -280,7 +281,6 @@ stop() ->
 %% Description: Initiates the server
 %%--------------------------------------------------------------------
 init(_Args) ->
-    lager:start(),  %% ok testing, remain or go?
     process_flag(trap_exit, true),
     {ok, #s{}}.
 
@@ -585,8 +585,6 @@ error(_Sender, _Frame, S) ->
 %% and joined CAN interfaces
 %% 
 broadcast(Sender,Frame,S) ->
-    lager:debug([{tag, frame}],"can_router: broadcast: [~s]", 
-		[can_probe:format_frame(Frame)]),
     Sent0 = broadcast_apps(Sender, Frame, S#s.apps, 0),
     Sent  = broadcast_ifs(Frame, S#s.ifs, Sent0),
     ?debug("broadcast: frame=~p, send=~w\n", [Frame, Sent]),

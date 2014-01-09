@@ -30,7 +30,7 @@
 -export([send/5, send_from/4, send_from/6]).
 
 start() ->
-    application:start(uart),
+%%    application:start(uart),
     application:start(can).
 
 %%

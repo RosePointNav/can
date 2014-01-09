@@ -25,8 +25,10 @@
 
 -behaviour(gen_server).
 
--include_lib("lager/include/log.hrl").
 -include("../include/can.hrl").
+
+-define(debug(X,Y), {X,Y}).  %% REVIEW replaces lager's debug macro
+
 
 %% API
 -export([start/0, start/1, start/2]).
