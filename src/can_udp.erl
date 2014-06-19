@@ -272,11 +272,11 @@ handle_info({udp,U,_Addr,Port,Data}, S) when S#s.in == U ->
 			    S1 = input(M, S),
 			    {noreply, S1};
 			_Other ->
-			    ?debug("can_udp: Got ~p\n", [_Other]),
+			    %%?debug("can_udp: Got ~p\n", [_Other]),
 			    {noreply, S}
 		    end;
 		_ ->
-		    ?debug("can_udp: Got ~p\n", [Data]),
+		    %%?debug("can_udp: Got ~p\n", [Data]),
 		    {noreply, ierr(?can_error_corrupt,S)}
 	    end
     end;
