@@ -257,7 +257,7 @@ handle_info({udp,U,_Addr,Port,Data}, S) when S#s.in == U ->
        true->
 	    %% FIXME: add check that _Addr is a local address
 	    case Data of
- 		<<CId:32/little,FLen:32/little,CData:8/binary>> ->
+ 		<<CId:32/little,FLen:32/little,CData/binary>> ->
 		    ?debug("CUd=~8.16.0B, FLen=~8.16.0B, CData=~p\n",
 			 [CId,FLen,CData]),
 		    Ts = -1,  %% add this option!
