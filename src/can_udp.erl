@@ -320,7 +320,7 @@ send_message(_Mesg, S) ->
     output_error(?can_error_data,S).
 
 
-send_bin_message(Mesg, Bin, S) when byte_size(Bin) =< 8 ->
+send_bin_message(Mesg, Bin, S) when byte_size(Bin) -> %removed 8 byte requirment
     send_message(Mesg#can_frame.id,
 		 Mesg#can_frame.len,
 		 Bin,
