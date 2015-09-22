@@ -54,6 +54,8 @@
 #define CTL_UINT32 2
 #define CTL_STRING 3
 
+#define DLOG_NONE  0
+
 #include "dthread.h"
 
 typedef struct _drv_ctx_t
