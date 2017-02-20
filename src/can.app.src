@@ -1,8 +1,6 @@
 {application, can,
  [{description, "CAN"},
   {vsn, git},
-  {registered, [can_router]},
-  {mod,{can_app,[]}},
   {env, []},
   {applications,[kernel,stdlib]}
   ]}.
