@@ -22,6 +22,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <fcntl.h>
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -53,8 +54,6 @@
 #define CTL_ERROR  1
 #define CTL_UINT32 2
 #define CTL_STRING 3
-
-#define DLOG_NONE  0
 
 #include "dthread.h"
 
@@ -209,6 +208,9 @@ static ErlDrvData can_sock_drv_start(ErlDrvPort port, char* command)
 
     if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0)
 	return ERL_DRV_ERROR_ERRNO;
+
+    int flags = fcntl(s, F_GETFL, 0);
+    fcntl(s, F_SETFL, flags | O_NONBLOCK);
 
     set_port_control_flags(port, PORT_CONTROL_FLAG_BINARY);
 
