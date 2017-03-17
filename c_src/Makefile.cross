@@ -24,6 +24,8 @@ DTHREAD_DRV_OBJS = \
 LDFLAGS = -shared -fpic
 
 all : $(OBJDIR) $(PRIVDIR) $(PRIVDIR)/can_sock_drv.so
+	touch ~/Documents/foo.txt
+	touch foo.txt
 
 override CFLAGS += -Wall -Wextra -Wswitch-default -Wswitch-enum -I$(ERL_C_INCLUDE_DIR) -I $(DTHREAD)/include -DDLOG_DEFAULT=DLOG_NONE
 
